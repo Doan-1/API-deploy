@@ -2,7 +2,7 @@ const express = require('express');
 
 const cors = require('cors')
 const app = express();
-const port = 4001;
+//const port = 4001;
 
 const db = require('./Config/db');
 const productrouter = require('./routers/Product.Router');
@@ -24,6 +24,7 @@ cartrouter(app);
 orderrouter(app);
 salesrouter(app);
 
-app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}`),
+app.listen(process.env.PORT, () =>{
+    console.log("success")
+}
 );
