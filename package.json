@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/Doan-1/API#readme",
   "dependencies": {
+    "axios": "^1.2.2",
     "body-parser": "^1.20.0",
     "cloudinary": "^1.30.0",
     "cors": "^2.8.5",

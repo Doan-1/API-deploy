@@ -117,7 +117,7 @@ class UserController{
             thumbnail: thumbnail1,
             classify: classify1
            });
-           console.log(a);
+           //console.log(a);
            try {
             await  user.updateOne({id_user: req.body.id_user},{$set: {favorite: a}}
             );
@@ -130,6 +130,5 @@ class UserController{
             console.log('co r ')
         }
     }
-    
 }
 module.exports = new UserController();
