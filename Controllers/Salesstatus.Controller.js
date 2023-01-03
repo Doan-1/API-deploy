@@ -24,18 +24,29 @@ class SalesstatusController{
             res.status(500).json({msg: err})
             return;
         }
-        // console.log(req.params.year)
-        // console.log(allsales)
+        //console.log(req.params.year)
+        //console.log(req.params.month)
+        //console.log(allsales)
         let total = [];
         total = allsales.sales;
-        //console.log(allsales.sales)
-        total.map((item,index)=>{
-            if (item.month === req.params.month)
-            {
-                //console.log(item.total)
-                res.json({data: item.total});
-            }
-        })
+        //console.log(total.length)
+        if(total[0] != null){
+            total.map((item,index)=>{
+                if (item.month === req.params.month)
+                {
+                    //console.log(item.total)
+                    res.json({data: item.total});
+                }
+                else
+                {
+                    res.json({data: 0});
+                }
+            })
+        }
+        else
+        {
+            res.json({data: 0});
+        }
     }
 }
 module.exports = new SalesstatusController();
