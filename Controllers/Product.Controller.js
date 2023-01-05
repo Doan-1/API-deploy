@@ -2,6 +2,7 @@ const res = require("express/lib/response");
 const product = require("../Models/Product");
 const { mutipleMongooseToObject } = require('../util/mongoose');
 const { mongooseToObject} = require('../util/mongoose');
+const axios = require("axios");
 
 
 class ProductController{
@@ -150,6 +151,22 @@ class ProductController{
         }
     }
     
+    getCF = async (req,res) =>{
+        try{
+            const getRecommendProduct = await axios('http://localhost:8080/getCF?user='+req.query.id_user);
+            //console.log(listProduct.data.product_id_array)
+            const listProduct = await product.find({
+                'id_product': { $in: getRecommendProduct.data.product_id_array }
+            })
+            //console.log(listProduct)
+            res.json({data:listProduct})
+        }
+        catch(err){
+            console.log(err)
+            res.status(500).json({msg:err})
+            return;
+        }
+    }
     
 }
 module.exports = new ProductController();

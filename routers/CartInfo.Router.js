@@ -9,6 +9,4 @@ module.exports = (app) => {
     .get(CartInfoController.getCartInfo);
     app.route('/cartinfo/:id')
     .get(CartInfoController.getCartInfobyIDCart);
-    // app.route('/comment/create')
-    // .post(CommentController.createNewComment);
 }
