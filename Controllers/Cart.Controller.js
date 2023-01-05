@@ -6,18 +6,6 @@ const salesstatus = require("../Models/Salesstatus");
  const { mutipleMongooseToObject } = require('../util/mongoose');
 const { mongooseToObject} = require('../util/mongoose');
 class CartController{
-    // getComment = (req,res) =>   {
-    //     user.find({}, function(err, data) {
-    //         if(!err)
-    //         {
-    //             console.log(data);
-    //             res.json({data: mutipleMongooseToObject(data)});
-    //         }
-    //         else{
-    //             res.status(400).json({error:'error'})
-    //         }
-    //     })
-    // }
     getCartbyIDUser = (req,res)=>{
         cart.find({id_user: req.params.id}, function(err, data) {
             if(!err)
@@ -66,17 +54,26 @@ class CartController{
         //
         let countid = 0;
         countid = a.length+1; 
-        const newcart = cart({id_cart: countid, id_user: req.body.id_user, total: req.body.total, address: req.body.address, phone: req.body.phone, status:"da nhan don hang"}); 
+        const newcart = cart({id_cart: countid, 
+                            id_user: req.body.id_user,
+                            first_name:req.body.first_name,
+                            last_name:req.body.last_name,
+                            email: req.body.email,
+                            shipping: req.body.shipping,
+                            total: req.body.total, 
+                            address: req.body.address, 
+                            phone: req.body.phone, 
+                            status:"da nhan don hang"}); 
         newcart.save();
         let orderFind = await order.findOne({id_user: req.body.id_user});
         if(orderFind != null)
         {
         //console.log(orderFind.orders)
-        let allcartinfo = [];
-        allcartinfo = await cartinfo.find({});
-        let countidcartinfo = 0;
-        countidcartinfo = allcartinfo.length + 1 ;
-        const newcartinfo = cartinfo({id_cart: countidcartinfo, orders: orderFind.orders});
+        // let allcartinfo = [];
+        // allcartinfo = await cartinfo.find({});
+        // let countidcartinfo = 0;
+        // countidcartinfo = allcartinfo.length + 1 ;
+        const newcartinfo = cartinfo({id_cart: countid, orders: orderFind.orders});
         //console.log(newcartinfo)
         try {
             newcartinfo.save();
