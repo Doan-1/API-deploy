@@ -9,6 +9,8 @@ const User = new Schema(
         user_email: {type: String},
         user_phone: {type: String},
         user_address: {type: String},
+        first_name:{type: String},
+        last_name:{type: String},
         favorite:{
             type:[
                 {
@@ -28,7 +30,7 @@ const User = new Schema(
                 }
             ],
             required : true,
-            minlength: 1,
+            minlength: 0,
         }
         
     },

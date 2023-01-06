@@ -137,12 +137,24 @@ class ProductController{
             return;
         }
     }
+
+    updateProductQuantity = async (req,res) =>{
+        try {
+            await product.updateOne({id_product: req.body.id_product},{$set: {quantity: req.body.quantity}})
+        }
+        catch(err) {
+            console.log(err)
+            res.status(500).json({msg: err})
+            return;
+        }
+    }
+
     updateProduct = async (req,res) =>{
         try {
             await product.updateOne({id_product: req.body.id_product},{$set: {product_name: req.body.product_name,
             product_price: req.body.product_price, description: req.body.description, slug: req.body.slug, categories: req.body.categories,
             color: req.body.color, style: req.body.style, detail_info: req.body.detail_info, discount: req.body.discount, discount_percent: req.body.discount_percent,
-            classify: req.body.classify}})
+            classify: req.body.classify, quantity: req.body.quantity}})
         }
         catch(err) {
             console.log(err)

@@ -30,7 +30,7 @@ class UserController{
             b = await user.find({});
             let countid = 0;
             countid = b.length +1;
-            const newuser = user({id_user: countid, user_name: req.body.username, user_password: req.body.password, user_email:'', user_phone:'',user_address:'',favorite:[]})
+            const newuser = user({id_user: countid, user_name: req.body.username, user_password: req.body.password,first_name: req.body.firstName, last_name: req.body.lastName, user_email:'', user_phone:'',user_address:'',favorite:[]})
             //console.log(newuser);
             newuser.save();
         }
@@ -42,7 +42,7 @@ class UserController{
     updateUser = async(req,res)=>{
         try {
             //console.log('o day');
-            await user.updateOne({id_user: req.body.id},{$set: {user_email: req.body.email,user_phone: req.body.phone, user_address: req.body.address}});
+            await user.updateOne({id_user: req.body.id},{$set: {user_email: req.body.email,user_phone: req.body.phone,first_name: req.body.firstName, last_name: req.body.lastName, user_address: req.body.address}});
         }
         catch(err) {
             console.log(err)

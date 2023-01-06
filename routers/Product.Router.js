@@ -25,7 +25,9 @@ module.exports = (app) => {
     app.route('/product/price/smaller/:id')
     .get(ProductController.getProductbyPriceSmallerthan);
     app.route('/product/price/between/:gt/:lt')
-    .get(ProductController.getProductbyPriceBetween); 
+    .get(ProductController.getProductbyPriceBetween);
+    app.route('/product/updatequantity')
+    .post(ProductController.updateProductQuantity) 
     app.route('/product/updatestatus')
     .post(ProductController.updateProductStatus);
     app.route('/product/update')
