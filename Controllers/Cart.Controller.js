@@ -128,9 +128,11 @@ class CartController{
                 let findpro = await product.findOne({id_product: item.id_product});
                 let newsoldquantity = Number(findpro.sold_quantity) + Number(item.quantity);
                 let newQuantity = Number(findpro.quantity) - Number(item.quantity);
+                if(newQuantity<0){
+                    await  product.updateOne({id_product: item.id_product},{$set: {sold_quantity: newsoldquantity, quantity: 0, status: "het hang"}});
+                }
                 //console.log(newsoldquantity.toString())
-                await  product.updateOne({id_product: item.id_product},{$set: {sold_quantity: newsoldquantity, quantity: newQuantity}}
-                );
+                await  product.updateOne({id_product: item.id_product},{$set: {sold_quantity: newsoldquantity, quantity: newQuantity}});
             })
             await order.deleteMany({id_user: req.body.id_user});
         }
