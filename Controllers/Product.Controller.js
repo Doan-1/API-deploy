@@ -115,10 +115,10 @@ class ProductController{
         let countid = 0;
         countid = a.length+1;
         try {
-            const product1 = new product(req.body);
-            product1.id_product = countid;
-            //console.log(product1)
-            product1.save()
+            const newProduct = new product(req.body);
+            newProduct.id_product = countid;
+            //console.log(newProduct)
+            newProduct.save()
         }
         catch(err) {
             console.log(err)

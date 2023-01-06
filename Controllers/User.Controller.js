@@ -41,6 +41,7 @@ class UserController{
                                     favorite:[]})
             //console.log(newuser);
             newuser.save();
+            res.json({msg:"Ok"})
         }
         else
         {
