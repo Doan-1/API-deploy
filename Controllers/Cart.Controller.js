@@ -16,7 +16,7 @@ class CartController{
             else{
                 res.status(400).json({error:'error'})
             }
-        })
+        }).sort({id_cart: -1})
         
     }
     getCartbyStatus = (req,res)=>{
