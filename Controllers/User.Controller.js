@@ -30,7 +30,15 @@ class UserController{
             b = await user.find({});
             let countid = 0;
             countid = b.length +1;
-            const newuser = user({id_user: countid, user_name: req.body.username, user_password: req.body.password,first_name: req.body.firstName, last_name: req.body.lastName, user_email:'', user_phone:'',user_address:'',favorite:[]})
+            const newuser = user({id_user: countid, 
+                                    user_name: req.body.username, 
+                                    user_password: req.body.password,
+                                    first_name: req.body.first_name, 
+                                    last_name: req.body.last_name, 
+                                    user_email:req.body.user_email, 
+                                    user_phone:req.body.user_phone,
+                                    user_address:req.body.user_address,
+                                    favorite:[]})
             //console.log(newuser);
             newuser.save();
         }
