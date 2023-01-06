@@ -147,6 +147,8 @@ class CartController{
         try {
             //console.log(req.body.id_cart, req.body.status)
             await cart.updateOne({id_cart: req.body.id_cart},{$set: {status: req.body.status}})
+            res.status(500).json({msg:"OK"})
+            return;
         }
         catch(err) {
             console.log(err)
