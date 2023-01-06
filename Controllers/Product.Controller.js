@@ -140,7 +140,9 @@ class ProductController{
 
     updateProductQuantity = async (req,res) =>{
         try {
-            await product.updateOne({id_product: req.body.id_product},{$set: {quantity: req.body.quantity}})
+            const productInfo = await product.find({id_product: req.body.id_product})
+            const newQuantity = productInfo.quantity + req.body.quantity;
+            await product.updateOne({id_product: req.body.id_product},{$set: {quantity: newQuantity}})
         }
         catch(err) {
             console.log(err)
